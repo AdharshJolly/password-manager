@@ -13,7 +13,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex justify-between py-3 px-8 items-center bg-primary/30 text-foreground">
+    <nav className="flex justify-between py-3 px-8 items-center bg-purple-800 text-white">
       <span className="font-bold text-2xl">Pass Manager</span>
 
       <ul className="flex items-center justify-between gap-4">
@@ -29,7 +29,7 @@ const Navbar = () => {
           onClick={toggleTheme}
           className="relative"
         >
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-black" />
           <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
         </Button>

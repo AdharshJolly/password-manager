@@ -3,8 +3,11 @@ import AddCardForm from "@/components/AddCardForm";
 import AddPasswordForm from "@/components/AddPasswordForm";
 import CardsList from "@/components/CardsList";
 import PasswordsList from "@/components/PasswordsList";
+import { currentUser } from "@clerk/nextjs/server";
 
-export default function Home() {
+export default async function Home() {
+  const user = await currentUser();
+
   return (
     <div className="container mx-auto p-4 sm:p-6 md:p-8 max-w-4xl">
       <h1 className="text-3xl sm:text-4xl font-bold text-center mb-6 sm:mb-8 text-primary">
@@ -38,7 +41,13 @@ export default function Home() {
             <CardTitle className="text-xl sm:text-2xl">Your Cards</CardTitle>
           </CardHeader>
           <CardContent className="p-4 sm:p-6">
-            <CardsList />
+            <CardsList
+              cards={
+                Array.isArray(user?.privateMetadata?.cards)
+                  ? user?.privateMetadata?.cards
+                  : []
+              }
+            />
           </CardContent>
         </Card>
         <Card className="bg-card text-card-foreground">
@@ -48,7 +57,13 @@ export default function Home() {
             </CardTitle>
           </CardHeader>
           <CardContent className="p-4 sm:p-6">
-            <PasswordsList />
+            <PasswordsList
+              passwords={
+                Array.isArray(user?.privateMetadata?.passwords)
+                  ? user?.privateMetadata?.passwords
+                  : []
+              }
+            />
           </CardContent>
         </Card>
       </div>
